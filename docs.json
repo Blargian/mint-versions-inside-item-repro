@@ -1,0 +1,71 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "Versions-Inside-Item Repro",
+  "colors": {
+    "primary": "#9A3412",
+    "light": "#EA580C",
+    "dark": "#9A3412"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "languages": [
+      {
+        "language": "en",
+        "tabs": [
+          {
+            "tab": "Solutions",
+            "menu": [
+              {
+                "item": "Home",
+                "icon": "house",
+                "pages": [
+                  "index"
+                ]
+              },
+              {
+                "item": "chDB",
+                "icon": "book",
+                "versions": [
+                  {
+                    "version": "v1",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "v1/welcome"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "version": "v2",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "v2/welcome"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "Other",
+                "icon": "book-open",
+                "pages": [
+                  "other-tab/landing"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  }
+}
