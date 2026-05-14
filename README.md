@@ -1,0 +1,118 @@
+# mint-versions-inside-item-repro
+
+Minimal reproducer for a bug where `versions` and `dropdowns` cannot be nested inside menu `item`s in Mintlify navigation.
+
+## docs.json
+
+```jsonc
+"navigation": {
+    "languages": [
+      {
+        "language": "en",
+        "tabs": [
+          {
+            "tab": "Solutions",
+            "menu": [
+              {
+                "item": "Home",
+                "icon": "house",
+                "pages": [
+                  "index"
+                ]
+              },
+              {
+                "item": "versioned product",
+                "icon": "book",
+                "versions": [
+                  {
+                    "version": "v1",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "v1/welcome"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "version": "v2",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "v2/welcome"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "Other",
+                "icon": "book-open",
+                "pages": [
+                  "other-tab/landing"
+                ]
+              },
+              {
+                "item": "product with dropdowns",
+                "icon": "list",
+                "dropdowns": [
+                  {
+                    "dropdown": "Dropdown A",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "dropdowns/a/welcome"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "dropdown": "Dropdown B",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "dropdowns/b/welcome"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+```
+
+## Expected behavior
+
+It is expected that the "versioned product" and "product with dropdowns" sections of the docs will be explorable.
+
+## Observed behavior
+
+When clicking "versioned product" or "product with dropdowns" these sections of the docs do not open, despite `mint validate` returning no errors. The "Other" section of the docs containing only pages without versions or dropdowns opens okay.
+
+## Why this matters
+
+Many documentation sites host documentation for a wide range of products. Some of these products are versioned independently, or have two or more 'variants', for example an opensource version and a hosted version. The `versions` and `dropdowns` navigation components are ideally suited for these two use cases respectively.
+
+The Mintlify docs state that:
+
+> You can nest navigation elements within each other to create complex hierarchies. You must have one root-level parent navigation element such as tabs, groups, or a dropdown. You can nest other types of navigation elements within your primary navigation pattern.
+
+This is a really powerful feature of Mintlify as it provides a lot of flexibility for how to organise your docs, and provides a substantial advantage over platforms like Docusaurus which have an opinionated approach to versioning and navigation layout. Ideally the above statement should apply fully to all navigation types. I can think of a use case even for being able to nest versions inside of groups (with the version dropdown showing as a small dropdown on the group item in the nav).
+
+## Running the repro
+
+```bash
+mint dev
+```
+
+Then navigate to the local URL printed by the CLI. The "Home" and "Other" items load; "versioned product" and "product with dropdowns" do not.
