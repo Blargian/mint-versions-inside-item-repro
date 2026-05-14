@@ -24,7 +24,7 @@
                 ]
               },
               {
-                "item": "chDB",
+                "item": "versioned product",
                 "icon": "book",
                 "versions": [
                   {
@@ -56,6 +56,34 @@
                 "icon": "book-open",
                 "pages": [
                   "other-tab/landing"
+                ]
+              },
+              {
+                "item": "product with dropdowns",
+                "icon": "list",
+                "dropdowns": [
+                  {
+                    "dropdown": "Dropdown A",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "dropdowns/a/welcome"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "dropdown": "Dropdown B",
+                    "groups": [
+                      {
+                        "group": "Get started",
+                        "pages": [
+                          "dropdowns/b/welcome"
+                        ]
+                      }
+                    ]
+                  }
                 ]
               }
             ]
